@@ -19,10 +19,17 @@
     - productivity
     - dotfiles
     - zsh
+- name: Remove .zshrc so dotfile install work
+  shell: rm ~/.zshrc
+  tags:
+    - install
+    - productivity
+    - dotfiles
+    - zsh
 - name: Install zsh-autosuggestions
   ansible.builtin.git:
     repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
-    dest: "~/.oh-my-zsh/plugins/zsh-autosuggestions"
+    dest: "~/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
   tags:
     - install
     - productivity
@@ -31,7 +38,7 @@
 - name: Install zsh-syntax-highlighting
   ansible.builtin.git:
     repo: 'https://github.com/zsh-users/zsh-syntax-highlighting.git'
-    dest: "~/.oh-my-zsh/plugins/zsh-syntax-highlighting"
+    dest: "~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
   tags:
     - install
     - productivity
@@ -40,7 +47,7 @@
 - name: Install zsh-completions
   ansible.builtin.git:
     repo: 'https://github.com/zsh-users/zsh-completions'
-    dest: "~/.oh-my-zsh/plugins/zsh-completions"
+    dest: "~/.oh-my-zsh/custom/plugins/zsh-completions"
   tags:
     - install
     - productivity
