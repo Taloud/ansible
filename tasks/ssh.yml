@@ -18,8 +18,13 @@
     - dotfiles
     - install
     - ssh
-- name: Set authorized key took from file
-  authorized_key:
-    user: "{{ lookup('env', 'USER') }}"
-    state: present
-    key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa.pub"
+- name: Install ssh public key
+  become_user: root
+  copy:
+    src: "{{ source_public_key }}"
+    dest: "{{ dest_public_key }}"
+    mode: 0600
+  tags:
+    - dotfiles
+    - install
+    - ssh

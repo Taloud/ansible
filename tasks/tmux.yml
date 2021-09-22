@@ -1,0 +1,8 @@
+- name: Install Tmux Plug Manager
+  ansible.builtin.git:
+    repo: 'https://github.com/tmux-plugins/tpm'
+    dest: "/.tmux/plugins/tpm"
+  tags:
+    - install
+    - dotfiles
+    - tmux
