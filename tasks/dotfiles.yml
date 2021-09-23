@@ -14,6 +14,20 @@
   tags:
     - install
     - dotfiles
+- name: Copy intelephense
+  become_user: root
+  copy:
+    src: "{{ source_intelephense_key }}"
+    dest: "{{ lookup('env', 'HOME') }}/.intelephense"
+    mode: 0777
+  tags:
+    - dotfiles
+    - install
+- name: Setup intelephense
+  shell: cd $HOME && sed -i "s/XXXXXXXXXXX/$(cat .intelephense)/" .dotfiles/nvim/.config/nvim/plugin/lsp.vim && rm .intelephense
+  tags:
+    - install
+    - dotfiles
 - name: Stow dotfiles
   shell: cd $HOME/.dotfiles && ./ubuntu
   tags:

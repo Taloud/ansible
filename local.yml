@@ -5,6 +5,7 @@
     dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
     source_public_key: "./.ssh/id_rsa.pub"
     dest_public_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa.pub"
+    source_intelephense_key: "./auth_codes/intelephense_backup_code"
   pre_tasks:
     - name: update repositories
       apt: update_cache=yes
