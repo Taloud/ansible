@@ -14,6 +14,11 @@
   tags:
     - install
     - dotfiles
+- name: Create intelephense dir
+  shell: cd $HOME && mkdir intelephense
+  tags:
+    - install
+    - dotfiles
 - name: Copy intelephense
   become_user: root
   copy:
