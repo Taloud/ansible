@@ -20,7 +20,6 @@
     - install
     - dotfiles
 - name: Copy intelephense
-  become_user: root
   copy:
     src: "{{ source_intelephense_key }}"
     dest: "{{ lookup('env', 'HOME') }}/intelephense/licence.txt"
