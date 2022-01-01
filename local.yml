@@ -1,6 +1,9 @@
 - hosts: localhost
+  gather_facts: true
   become: true
+  become_user: "{{ lookup('env', 'USER') }}"
   vars:
+    user: "{{ ansible_user_id }}"
     source_key: "./.ssh/id_rsa"
     dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
     source_public_key: "./.ssh/id_rsa.pub"
@@ -9,10 +12,11 @@
   pre_tasks:
     - name: update repositories
       apt: update_cache=yes
+      become_user: root
       changed_when: False
   tasks:
-    - include: tasks/ssh.yml
     - include: tasks/core-setup.yml
+    - include: tasks/ssh.yml
     - include: tasks/node-setup.yml
     - include: tasks/npm-packages.yml
     - include: tasks/productivity-tools.yml
