@@ -33,3 +33,11 @@
   tags:
     - install
     - dotfiles
+- name: Change shell to zsh
+  become_user: root
+  shell: chsh -s $(which zsh)
+  tags:
+    - install
+    - dotfiles
+    - productivity
+    - zsh
