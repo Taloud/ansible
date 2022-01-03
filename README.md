@@ -13,3 +13,5 @@ ansible-playbook -t install --ask-vault-pass local.yml
 Manually `PlugInstall` in neovim.
 
 Restart computer then to ensure everithing is fine.
+
+For now zsh is still not by defaut dunno why so have to `chsh -s $(which zsh)` then restart once.
