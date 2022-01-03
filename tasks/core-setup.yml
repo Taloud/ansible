@@ -1,47 +1,23 @@
 - name: Install System Packages 1 (build-essential, cmake, pkg-config, pthread)
   become_user: root
   apt:
-    name: ["build-essential", "cmake", "pkg-config", "libpthread-stubs0-dev"]
+    name: ["build-essential", "cmake", "pkg-config", "libpthread-stubs0-dev", "pipx"]
   tags:
     - install
     - neovim
     - core
 - name: Install System Packages 2 (lua, unzip, libtool, libtool-bin, gettext)
+  become_user: root
   apt:
-    name: [ "lua5.1", "unzip", "libtool", "libtool-bin", "gettext"]
+    name: [ "lua5.1", "unzip", "libtool", "libtool-bin", "gettext", "direnv", "python3", "python"]
   tags:
     - install
     - neovim
     - core
 - name: Install System Packages 3 (the rest)
+  become_user: root
   apt:
     name: ["curl", "htop", "i3", "python3-pip", "dconf-editor", "nvidia-settings", "pavucontrol"]
-  tags:
-    - install
-    - core
-- name: check is fd installed
-  shell: command -v fd
-  register: fd_exists
-  ignore_errors: yes
-  tags:
-    - install
-    - core
-- name: install fd
-  shell: . ~/.profile && nix-env -iA nixpkgs.fd
-  tags:
-    - install
-    - core
-- name: check is pipx installed
-  shell: command -v pipx
-  register: pipx_exists
-  ignore_errors: yes
-  tags:
-    - install
-    - core
-- name: pipx
-  when: pipx_exists is failed
-  pip:
-    name: pipx
   tags:
     - install
     - core

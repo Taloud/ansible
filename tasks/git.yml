@@ -1,0 +1,10 @@
+- name: add git global email
+  shell: git config --global user.email "16608904+Taloud@users.noreply.github.com"
+  tags:
+    - install
+    - git
+- name: add git global user
+  shell: git config --global user.name "Taloud"
+  tags:
+    - install
+    - git

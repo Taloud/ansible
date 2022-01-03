@@ -1,4 +1,5 @@
 - name: Installing stow
+  become_user: root
   apt: name=stow
   tags:
     - install
