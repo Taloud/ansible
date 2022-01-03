@@ -4,7 +4,6 @@
     name: ["build-essential", "cmake", "pkg-config", "libpthread-stubs0-dev", "pipx"]
   tags:
     - install
-    - neovim
     - core
 - name: Install System Packages 2 (lua, unzip, libtool, libtool-bin, gettext)
   become_user: root
@@ -12,12 +11,16 @@
     name: [ "lua5.1", "unzip", "libtool", "libtool-bin", "gettext", "direnv", "python3", "python", "ctags", "ripgrep", "fd-find"]
   tags:
     - install
-    - neovim
     - core
 - name: Install System Packages 3 (the rest)
   become_user: root
   apt:
     name: ["curl", "htop", "i3", "python3-pip", "dconf-editor", "nvidia-settings", "pavucontrol"]
+  tags:
+    - install
+    - core
+- name: Install python3 provider
+  shell: python3 -m pip install --user --upgrade pynvim
   tags:
     - install
     - core
