@@ -9,7 +9,7 @@
 - name: Install System Packages 2 (lua, unzip, libtool, libtool-bin, gettext)
   become_user: root
   apt:
-    name: [ "lua5.1", "unzip", "libtool", "libtool-bin", "gettext", "direnv", "python3", "python"]
+    name: [ "lua5.1", "unzip", "libtool", "libtool-bin", "gettext", "direnv", "python3", "python", "ctags", "ripgrep", "fd-find"]
   tags:
     - install
     - neovim

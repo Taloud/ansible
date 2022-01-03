@@ -26,4 +26,10 @@
   tags:
     - install
     - node
-
+- name: Install neovim
+  npm:
+    name: neovim
+    global: yes
+  tags:
+    - install
+    - node

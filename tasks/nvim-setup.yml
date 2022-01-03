@@ -18,6 +18,12 @@
     - install
     - neovim
 
+- name: Remove neovim
+  shell: rm -rf ~/neovim
+  tags:
+    - install
+    - neovim
+
 - name: Neovim Installation
   ansible.builtin.git:
     repo: 'https://github.com/neovim/neovim.git'
