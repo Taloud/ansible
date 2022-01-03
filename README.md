@@ -9,3 +9,7 @@ git clone https://github.com/Taloud/ansible.git
 cd ansible
 ansible-playbook -t install --ask-vault-pass local.yml
 ```
+
+Manually `PlugInstall` in neovim.
+
+Restart computer then to ensure everithing is fine.
