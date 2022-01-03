@@ -8,6 +8,11 @@
   tags:
     - install
     - git
+- name: add git global editor
+  shell: git config --global core.editor "nvim"
+  tags:
+    - install
+    - git
 - name: make ansible git ssh origin
   shell: "cd {{ lookup('env', 'HOME') }}/ansible && git remote set-url origin git@github.com:Taloud/ansible.git"
   tags:
