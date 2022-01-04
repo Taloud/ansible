@@ -19,7 +19,7 @@
     - install
     - git
 - name: make dotfile git ssh origin
-  shell: "cd {{ lookup('env', 'HOME') }}/.dotfiles && git remote set-url origin git@github.com:Taloud/.dotfiles.git"
+  shell: "cd {{ lookup('env', 'HOME') }}/.dotfiles && git remote set-url origin git@github.com:Taloud/dotfiles.git"
   tags:
     - install
     - git
