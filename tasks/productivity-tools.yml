@@ -20,11 +20,18 @@
     curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin dest={{ lookup('env', 'HOME') }}/.local/stow
     cd {{ lookup('env', 'HOME') }}/.local/stow
     stow -v kitty.app
-    sudo update-alternatives --install `which x-terminal-emulator` x-terminal-emulator `which kitty` 50
   tags:
     - install
     - kitty
 
+- name: update-alternatives for kitty default shell
+  when: kitty_exists is failed
+  shell: "sudo update-alternatives --install `which x-terminal-emulator` x-terminal-emulator `which kitty` 50"
+  ignore_errors: yes
+  tags:
+    - install
+    - kitty
+    
 - name: Download Composer
   shell: cd ~ && curl -sS https://getcomposer.org/installer -o composer-setup.php
   tags:
