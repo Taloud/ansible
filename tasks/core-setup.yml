@@ -8,7 +8,7 @@
 - name: Install System Packages 2 (lua, unzip, libtool, libtool-bin, gettext, ...)
   become_user: root
   apt:
-    name: [ "lua5.1", "unzip", "libtool", "libtool-bin", "gettext", "direnv", "python3", "python", "ctags","php-cli", "ripgrep", "fd-find"]
+    name: [ "lua5.1", "unzip", "libtool", "libtool-bin", "gettext", "direnv", "python3", "python", "ctags","php-cli", "ripgrep", "fd-find", "stow"]
   tags:
     - install
     - core
