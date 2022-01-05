@@ -25,7 +25,6 @@
 #     - kitty
 
 - name: update-alternatives for kitty default shell
-  when: kitty_exists is failed
   shell: "sudo update-alternatives --install `which x-terminal-emulator` x-terminal-emulator `which kitty` 50"
   ignore_errors: yes
   tags:
@@ -33,7 +32,6 @@
     - kitty
 
 - name: delete kitty config folder for stow
-  when: kitty_exists is failed
   shell: cd {{ lookup('env', 'HOME') }}/.local/stow && rm -rf kitty
   ignore_errors: yes
   tags:
