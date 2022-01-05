@@ -6,33 +6,9 @@
     - install
     - productivity
 
-# - name: Check if kitty exists
-#   shell: command -v kitty
-#   register: kitty_exists
-#   ignore_errors: yes
-#   tags:
-#     - install
-#     - kitty
-
-# - name: install kitty
-#   when: kitty_exists is failed
-#   shell: |
-#     curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin dest={{ lookup('env', 'HOME') }}/.local/stow
-#     cd {{ lookup('env', 'HOME') }}/.local/stow
-#     stow -v kitty.app
-#   tags:
-#     - install
-#     - kitty
-
 - name: update-alternatives for kitty default shell
-  shell: "sudo update-alternatives --install `which x-terminal-emulator` x-terminal-emulator `which kitty` 50"
-  ignore_errors: yes
-  tags:
-    - install
-    - kitty
-
-- name: delete kitty config folder for stow
-  shell: cd {{ lookup('env', 'HOME') }}/.local/stow && rm -rf kitty
+  become_user: root
+  shell: "update-alternatives --install `which x-terminal-emulator` x-terminal-emulator `which kitty` 50"
   ignore_errors: yes
   tags:
     - install
