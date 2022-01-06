@@ -13,9 +13,51 @@
     - install
     - desktop
 
+- name: Create themes dir if it does not exist
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.themes"
+    state: directory
+    mode: '0755'
+
+- name: Create icons dir if it does not exist
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.icons"
+    state: directory
+    mode: '0755'
+
+- name: Extract serenade in themes
+  ansible.builtin.unarchive:
+    src: "{{ lookup('env', 'HOME') }}/.dotfiles/themes/serenade.zip"
+    dest: "{{ lookup('env', 'HOME') }}/.themes"
+  tags:
+    - install
+    - desktop
+
+- name: Extract Flatery in icons
+  ansible.builtin.unarchive:
+    src: "{{ lookup('env', 'HOME') }}/.dotfiles/themes/Flatery.zip"
+    dest: "{{ lookup('env', 'HOME') }}/.icons"
+  tags:
+    - install
+    - desktop
+
+- name: Remove Animation GTK
+  become_user: root
+  shell: gsettings set org.gnome.desktop.interface enable-animations false
+  tags:
+    - install
+    - desktop
+
 - name: change GTK theme to Serenade
   become_user: root
   shell: gsettings set org.gnome.desktop.interface gtk-theme serenade
+  tags:
+    - install
+    - desktop
+
+- name: change Windows manager theme to Serenade
+  become_user: root
+  shell: gsettings set org.gnome.desktop.wm.preferences theme serenade
   tags:
     - install
     - desktop
