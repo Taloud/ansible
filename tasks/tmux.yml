@@ -2,7 +2,7 @@
   become_user: root
   ansible.builtin.git:
     repo: 'https://github.com/tmux-plugins/tpm'
-    dest: "/.tmux/plugins/tpm"
+    dest: "~/.tmux/plugins/tpm"
   tags:
     - install
     - dotfiles

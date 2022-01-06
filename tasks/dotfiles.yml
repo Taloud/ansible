@@ -9,11 +9,13 @@
   tags:
     - install
     - dotfiles
+
 - name: Create intelephense dir
   shell: cd $HOME && mkdir intelephense
   tags:
     - install
     - dotfiles
+
 - name: Copy intelephense
   copy:
     src: "{{ source_intelephense_key }}"
@@ -22,16 +24,9 @@
   tags:
     - dotfiles
     - install
+
 - name: Stow dotfiles
   shell: cd $HOME/.dotfiles && ./ubuntu
   tags:
     - install
     - dotfiles
-- name: Change shell to zsh
-  become_user: root
-  shell: chsh -s $(which zsh)
-  tags:
-    - install
-    - dotfiles
-    - productivity
-    - zsh

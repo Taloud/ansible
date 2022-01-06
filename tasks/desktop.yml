@@ -1,0 +1,28 @@
+- name: update-alternatives for kitty default shell
+  become_user: root
+  shell: "update-alternatives --install `which x-terminal-emulator` x-terminal-emulator `which kitty` 50"
+  ignore_errors: yes
+  tags:
+    - install
+    - desktop
+    - kitty
+
+- name: Change shell to zsh
+  shell: chsh -s $(which zsh)
+  tags:
+    - install
+    - desktop
+
+- name: change GTK theme to Serenade
+  become_user: root
+  shell: gsettings set org.gnome.desktop.interface gtk-theme serenade
+  tags:
+    - install
+    - desktop
+
+- name: change GTK icons to Flatery
+  become_user: root
+  shell: gsettings set org.gnome.desktop.interface icon-theme Flatery
+  tags:
+    - install
+    - desktop

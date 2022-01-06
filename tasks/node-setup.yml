@@ -5,6 +5,7 @@
   tags:
     - install
     - node
+
 - name: Set Global npm directory
   shell: |
     mkdir ~/.local/.npm-global
@@ -12,6 +13,7 @@
   tags:
     - install
     - node
+
 - name: include node_modules path in .profile
   blockinfile:
     dest: "{{ lookup('env', 'HOME') }}/.profile"
@@ -27,6 +29,7 @@
   tags:
     - install
     - node
+
 - name: Install N
   npm:
     name: n
@@ -34,6 +37,7 @@
   tags:
     - install
     - node
+
 - name: Install correct version of Node
   shell: |
     export N_PREFIX=~/.local/.n

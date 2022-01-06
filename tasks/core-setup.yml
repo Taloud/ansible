@@ -5,13 +5,15 @@
   tags:
     - install
     - core
-- name: Install System Packages 2 (lua, unzip, libtool, libtool-bin, gettext, ...)
+
+- name: Install System Packages 2 (lua, unzip, libtool, libtool-bin, gettext)
   become_user: root
   apt:
-    name: [ "lua5.1", "unzip", "libtool", "libtool-bin", "gettext", "direnv", "python3", "python", "ctags","php-cli", "ripgrep", "fd-find", "stow"]
+    name: [ "lua5.1", "unzip", "libtool", "libtool-bin", "gettext"]
   tags:
     - install
     - core
+
 - name: Install System Packages 3 (the rest)
   become_user: root
   apt:
@@ -19,6 +21,15 @@
   tags:
     - install
     - core
+
+- name: Install all other usefull packages
+  become_user: root
+  apt:
+    name: ["tmux","fzf","xclip","tldr","kitty","direnv", "python3", "python", "ctags","php-cli", "ripgrep", "fd-find", "stow", "gnome-tweaks"]
+  tags:
+    - install
+    - core
+
 - name: Install python3 provider
   shell: python3 -m pip install --user --upgrade pynvim
   tags:

@@ -1,0 +1,12 @@
+- name: Download Composer
+  shell: cd ~ && curl -sS https://getcomposer.org/installer -o composer-setup.php
+  tags:
+    - install
+    - composer
+
+- name: Install Composer
+  become_user: root
+  shell: "php {{ lookup('env', 'HOME') }}/composer-setup.php --install-dir=/usr/local/bin --filename=composer && rm {{ lookup('env', 'HOME') }}/composer-setup.php"
+  tags:
+    - install
+    - composer
