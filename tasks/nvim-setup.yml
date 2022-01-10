@@ -45,27 +45,20 @@
     - install
     - neovim
 
-- name: Check if vim-plug is installed
-  stat:
-    path: "{{ lookup('env', 'HOME') }}/.local/share/nvim/site/autoload/plug.vim"
-  register: vim_plug_path
+- name: Check if Packer directory exist
+  ansible.builtin.stat:
+    path: "{{ lookup('env', 'HOME') }}/.local/share/nvim/site/pack/packer"
+  register: packer_path
   tags:
     - install
     - dotfiles
     - neovim
 
-- name: Install Vim-Plug
-  when: vim_plug_path.stat.islnk is not defined
-  shell: curl -fLo {{ lookup('env', 'HOME') }}/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+- name: Install Packer
+  when: packer_path.stat.isdir is not defined
+  shell: git clone --depth 1 https://github.com/wbthomason/packer.nvim\ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
   tags:
     - install
     - dotfiles
     - neovim
 
-- name: Install vim Plugins
-  ignore_errors: yes
-  shell: nvim -u ~/.config/nvim/plugins.vim +PlugClean +qall
-  tags:
-    - install
-    - dotfiles
-    - neovim
