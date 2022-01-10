@@ -10,8 +10,8 @@ cd ansible
 ansible-playbook -t install --ask-vault-pass local.yml --ask-become-pass
 ```
 
-Manually `PlugInstall` in neovim. 
+Manually `:PackerSync` in neovim.
 
-For now zsh is still not by defaut, so have to `chsh -s $(which zsh)` then restart once.
+For now zsh is still not by defaut can't make it work without sudo on ansible, so have to `chsh -s $(which zsh)`.
 
 Restart computer then to ensure everything is fine.
