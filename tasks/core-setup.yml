@@ -25,7 +25,24 @@
 - name: Install all other usefull packages
   become_user: root
   apt:
-    name: ["tmux","fzf","xclip","tldr","kitty","direnv", "python3", "python", "ctags","php-cli", "ripgrep", "fd-find", "stow", "gnome-tweaks"]
+    name: ["tmux","fzf","xclip","tldr","kitty","direnv", "python3", "python", "ctags","php-cli", "ripgrep", "fd-find", "stow", "feh", "xss-lock", "compton"]
+  tags:
+    - install
+    - core
+
+- name: Install i3-gaps repository
+  become_user: root
+  ansible.builtin.apt_repository:
+    repo: ppa:regolith-linux/release
+  tags:
+    - install
+    - core
+
+- name: Install i3-gaps
+  become_user: root
+  apt:
+    name: "i3-gaps"
+    update_cache: yes
   tags:
     - install
     - core
