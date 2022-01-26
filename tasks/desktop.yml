@@ -7,6 +7,59 @@
     - desktop
     - kitty
 
+- name: ensure git directory
+  file:
+    path: "{{ lookup('env', 'HOME') }}/git"
+    state: directory
+
+- name: ensure work directory
+  file:
+    path: "{{ lookup('env', 'HOME') }}/work"
+    state: directory
+
+- name: check is polybar installed
+  shell: command -v polybar
+  register: polybar_exists
+  ignore_errors: yes
+  tags:
+    - desktop
+    - polybar
+    - install
+
+- name: install polybar
+  tags:
+    - desktop
+    - install
+    - polybar
+  when: polybar_exists is failed
+  block:
+  - name: install polybar dependencies
+    become_user: root
+    apt:
+      name:
+        - cmake
+        - cmake-data
+        - libcairo2-dev
+        - libjsoncpp-dev
+        - 'libxcb-*'
+        - libxcb-composite0-dev
+        - libxcb-ewmh-dev
+        - libxcb-randr0-dev
+        - libxcb1-dev
+        - python3-sphinx
+        - python3-xcbgen
+        - xcb-proto
+  - name: clone polybar
+    ansible.builtin.git:
+      repo: 'https://github.com/jaagr/polybar.git'
+      dest: "{{ lookup('env', 'HOME') }}/git/polybar"
+      update: no
+  - name: install polybar
+    shell: |
+      sudo ln -s /usr/include/jsoncpp/json/ /usr/include/json
+      cd {{ lookup('env', 'HOME') }}/git/polybar
+      ./build.sh
+
 - name: Create themes dir if it does not exist
   file:
     path: "{{ lookup('env', 'HOME') }}/.themes"
