@@ -96,6 +96,46 @@
       dest: "{{ lookup('env', 'HOME') }}/git/i3-lock-color"
       update: no
 
+- name: install picom
+  tags:
+    - desktop
+    - install
+    - picom
+  block:
+  - name: install picom dependencies
+    become_user: root
+    apt:
+      name:
+        - libxext-dev
+        - libxcb1-dev
+        - libxcb-damage0-dev
+        - libxcb-xfixes0-dev
+        - libxcb-shape0-dev
+        - libxcb-render-util0-dev
+        - libxcb-render0-dev
+        - libxcb-randr0-dev
+        - libxcb-composite0-dev
+        - libxcb-image0-dev
+        - libxcb-present-dev
+        - libxcb-xinerama0-dev
+        - libxcb-glx0-dev
+        - libpixman-1-dev
+        - libdbus-1-dev
+        - libconfig-dev
+        - libgl1-mesa-dev
+        - libpcre2-dev
+        - libpcre3-dev
+        - libevdev-dev
+        - uthash-dev
+        - libev-dev
+        - libx11-xcb-dev
+        - meson
+  - name: clone picom blur
+    ansible.builtin.git:
+      repo: 'https://github.com/ibhagwan/picom'
+      dest: "{{ lookup('env', 'HOME') }}/git/picom"
+      update: no
+
 - name: Create themes dir if it does not exist
   file:
     path: "{{ lookup('env', 'HOME') }}/.themes"
