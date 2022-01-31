@@ -136,6 +136,19 @@
       dest: "{{ lookup('env', 'HOME') }}/git/picom"
       update: no
 
+- name: install rofi applet
+  tags:
+    - desktop
+    - install
+    - rofi
+  block:
+  - name: clone rofi theme
+    ansible.builtin.git:
+      repo: 'https://github.com/adi1090x/rofi'
+      dest: "{{ lookup('env', 'HOME') }}/git/rofi"
+      depth: 1
+      update: no
+
 - name: Create themes dir if it does not exist
   file:
     path: "{{ lookup('env', 'HOME') }}/.themes"
@@ -200,3 +213,47 @@
     - install
     - desktop
     - layout
+
+- name: install spotify package
+  become_user: root
+  shell: "curl -sS https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg | sudo apt-key add - && echo 'deb http://repository.spotify.com stable non-free' | sudo tee /etc/apt/sources.list.d/spotify.list && sudo apt-get update"
+  tags:
+    - install
+    - desktop
+    - spotify
+
+- name: Install Spotify
+  become_user: root
+  apt:
+    name: "spotify-client"
+    update_cache: yes
+  tags:
+    - install
+    - desktop
+    - spotify
+
+- name: install 1password package
+  become_user: root
+  shell: "curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg &&  echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/amd64 stable main' | sudo tee /etc/apt/sources.list.d/1password.list"
+  tags:
+    - install
+    - desktop
+    - 1password
+
+- name: install 1password debsig verify
+  become_user: root
+  shell: "sudo mkdir -p /etc/debsig/policies/AC2D62742012EA22/ && curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol | sudo tee /etc/debsig/policies/AC2D62742012EA22/1password.pol && sudo mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22 && curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg &&  sudo apt update"
+  tags:
+    - install
+    - desktop
+    - 1password
+
+- name: Install 1password
+  become_user: root
+  apt:
+    name: "1password"
+    update_cache: yes
+  tags:
+    - install
+    - desktop
+    - 1password

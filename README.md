@@ -25,4 +25,7 @@ meson --buildtype=release . build
 sudo ninja -C build install
 ```
 
+For now manually launch rofi applet install with `cd ~/git/rofi && chmod +x setup.sh && ./setup.sh`
+And probably need to restow rofi after this for now.
+
 Restart computer then to ensure everything is fine.
