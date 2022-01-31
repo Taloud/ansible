@@ -41,7 +41,6 @@
         - cmake-data
         - libcairo2-dev
         - libjsoncpp-dev
-        - 'libxcb-*'
         - libxcb-composite0-dev
         - libxcb-ewmh-dev
         - libxcb-randr0-dev
@@ -49,16 +48,53 @@
         - python3-sphinx
         - python3-xcbgen
         - xcb-proto
+        - libasound2-dev
+        - libcurl4-openssl-dev
+        - libmpdclient-dev
+        - python3-packaging
+        - libuv1-dev
+        - libxcb-util0-dev
+        - libxcb-image0-dev
+        - libxcb-icccm4-dev
+        - libiw-dev
+        - libpulse-dev
   - name: clone polybar
     ansible.builtin.git:
       repo: 'https://github.com/jaagr/polybar.git'
       dest: "{{ lookup('env', 'HOME') }}/git/polybar"
       update: no
-  - name: install polybar
-    shell: |
-      sudo ln -s /usr/include/jsoncpp/json/ /usr/include/json
-      cd {{ lookup('env', 'HOME') }}/git/polybar
-      ./build.sh
+
+- name: install i3lock-color
+  tags:
+    - desktop
+    - install
+    - i3lock
+  block:
+  - name: install i3lock-color dependencies
+    become_user: root
+    apt:
+      name:
+        - gcc
+        - make
+        - libpam0g-dev
+        - libfontconfig1-dev
+        - libev-dev
+        - libx11-xcb-dev
+        - libxcb-xkb-dev
+        - libxcb-xinerama0-dev
+        - libxcb-util-dev
+        - libxcb-xrm-dev
+        - libxcb-xtest0-dev
+        - libxkbcommon-dev
+        - libxkbcommon-x11-dev
+        - libjpeg-dev
+        - scrot
+        - imagemagick
+  - name: clone i3lock-color
+    ansible.builtin.git:
+      repo: 'https://github.com/Raymo111/i3lock-color.git'
+      dest: "{{ lookup('env', 'HOME') }}/git/i3-lock-color"
+      update: no
 
 - name: Create themes dir if it does not exist
   file:
@@ -117,3 +153,10 @@
   tags:
     - install
     - desktop
+
+- name: Install real program dvorak layout
+  shell: sudo cp ~/.config/xkb/symbols/real-prog-dvorak /usr/share/X11/xkb/symbols/real-prog-dvorak
+  tags:
+    - install
+    - desktop
+    - layout

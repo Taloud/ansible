@@ -14,4 +14,7 @@ Manually `:PackerSync` in neovim.
 
 For now zsh is still not by defaut can't make it work without sudo on ansible, so have to `chsh -s $(which zsh)`.
 
+For now manually launch polybar install with `cd /git/polybar && ./build.sh`
+For now manually launch i3lock-color install with `cd /git/i3lock-color && ./install-i3lock-color.sh`
+
 Restart computer then to ensure everything is fine.
