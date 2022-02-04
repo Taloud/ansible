@@ -30,6 +30,62 @@
     - install
     - node
 
+- name: Install Vim-language
+  npm:
+    name: vim-language-server
+    global: yes
+  tags:
+    - install
+    - node
+
+- name: Install yaml language
+  npm:
+    name: yaml-language-server
+    global: yes
+  tags:
+    - install
+    - node
+
+- name: Install EsLint
+  npm:
+    name: eslint
+    global: yes
+  tags:
+    - install
+    - node
+
+- name: Install Intelephense
+  npm:
+    name: intelephense
+    global: yes
+  tags:
+    - install
+    - node
+
+- name: Install qraphql
+  npm:
+    name: graphql-language-service-cli
+    global: yes
+  tags:
+    - install
+    - node
+
+- name: Install JSONLS/cssls/html language
+  npm:
+    name: vscode-langservers-extracted
+    global: yes
+  tags:
+    - install
+    - node
+
+- name: Install tailwindcss language
+  npm:
+    name: '@tailwindcss/language-server'
+    global: yes
+  tags:
+    - install
+    - node
+
 - name: Install neovim
   npm:
     name: neovim
