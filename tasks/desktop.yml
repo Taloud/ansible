@@ -149,6 +149,18 @@
       depth: 1
       update: no
 
+- name: install tmux-plugins manager
+  tags:
+    - desktop
+    - install
+    - tmux
+  block:
+  - name: clone tmux plugin manager
+    ansible.builtin.git:
+      repo: 'https://github.com/tmux-plugins/tpm'
+      dest: "{{ lookup('env', 'HOME') }}/.tmux/plugins/tpm"
+      update: no
+
 - name: Create themes dir if it does not exist
   file:
     path: "{{ lookup('env', 'HOME') }}/.themes"

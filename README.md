@@ -28,4 +28,6 @@ sudo ninja -C build install
 For now manually launch rofi applet install with `cd ~/git/rofi && chmod +x setup.sh && ./setup.sh`
 And probably need to restow rofi after this for now.
 
+Finally `prefix + I` in tmux for plugin installation.
+
 Restart computer then to ensure everything is fine.
