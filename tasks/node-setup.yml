@@ -45,3 +45,10 @@
   tags:
     - install
     - node
+- name: Install Yarn manager yvm
+  shell: |
+    curl -s https://raw.githubusercontent.com/tophat/yvm/master/scripts/install.js | node
+  tags:
+    - install
+    - node
+    - yvm
