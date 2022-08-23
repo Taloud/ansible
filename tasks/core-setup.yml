@@ -25,7 +25,7 @@
 - name: Install all other usefull packages
   become_user: root
   apt:
-    name: ["tmux","fzf","xclip","tldr","kitty","direnv", "python3", "python", "ctags","php-cli", "ripgrep", "fd-find", "stow", "feh", "xss-lock", "compton", "rofi", "lxappearance"]
+    name: ["tmux","fzf","xclip","tldr","kitty","direnv", "python3", "python", "ctags","php-cli", "ripgrep", "fd-find", "stow", "feh", "xss-lock", "compton", "rofi", "lxappearance", "gimp"]
   tags:
     - install
     - core
