@@ -25,10 +25,19 @@
 - name: Install all other usefull packages
   become_user: root
   apt:
-    name: ["tmux","fzf","xclip","tldr","kitty","direnv", "python3", "python", "ctags","php-cli", "ripgrep", "fd-find", "stow", "feh", "xss-lock", "compton", "rofi", "lxappearance", "gimp"]
+    name: ["tmux","fzf","xclip","tldr", "direnv", "python3", "python", "ctags","php-cli", "ripgrep", "fd-find", "stow", "feh", "xss-lock","xdotool", "compton", "lxappearance", "gimp"]
   tags:
     - install
     - core
+
+- name: Install rofi dependencies
+  become_user: root
+  apt:
+    name: ["flex", "bison", "libxcb-cursor-dev", "libsdl-pango-dev", "libstartup-notification0-dev", "libgdk-pixbuf2.0-dev"]
+  tags:
+    - install
+    - core
+    - rofi
 
 - name: Install i3-gaps repository
   become_user: root
@@ -37,6 +46,25 @@
   tags:
     - install
     - core
+
+- name: Install PHP 8.1 repository
+  become_user: root
+  ansible.builtin.apt_repository:
+    repo: ppa:ondrej/php
+  tags:
+    - install
+    - core
+    - php
+
+- name: Install PHP 8.1
+  become_user: root
+  apt:
+    name: ["php8.1", "php8.1-mbstring", "php8.1-mysql"]
+    update_cache: yes
+  tags:
+    - install
+    - core
+    - php
 
 - name: Install i3-gaps
   become_user: root

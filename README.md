@@ -16,6 +16,7 @@ For now zsh is still not by defaut can't make it work without sudo on ansible, s
 
 For now manually launch polybar install with `cd ~/git/polybar && ./build.sh`
 For now manually launch i3lock-color install with `cd ~/git/i3lock-color && ./install-i3lock-color.sh`
+For now manually launch Rofi install with `cd ~/git/rofi && autoreconf -i && mkdir build && cd build && ../configure && make && sudo make install`
 
 For now manually launch picom install with
 ```

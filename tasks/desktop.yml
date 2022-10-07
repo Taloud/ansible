@@ -1,3 +1,21 @@
+- name: Install kitty
+  shell: "curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin"
+  ignore_errors: yes
+  tags:
+    - install
+    - desktop
+    - kitty
+    - kitty-update
+
+- name: Copy Kitty to application
+  shell: "cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications"
+  ignore_errors: yes
+  tags:
+    - install
+    - desktop
+    - kitty
+    - kitty-update
+
 - name: update-alternatives for kitty default shell
   become_user: root
   shell: "update-alternatives --install `which x-terminal-emulator` x-terminal-emulator `which kitty` 50"
@@ -136,18 +154,15 @@
       dest: "{{ lookup('env', 'HOME') }}/git/picom"
       update: no
 
-- name: install rofi applet
+- name: install rofi
   tags:
     - desktop
     - install
-    - rofi
   block:
-  - name: clone rofi theme
+  - name: clone rofi
     ansible.builtin.git:
-      repo: 'https://github.com/adi1090x/rofi'
+      repo: 'https://github.com/DaveDavenport/rofi'
       dest: "{{ lookup('env', 'HOME') }}/git/rofi"
-      depth: 1
-      update: no
 
 - name: install tmux-plugins manager
   tags:
@@ -259,6 +274,13 @@
     - install
     - desktop
     - 1password
+
+- name: install i3-resurect
+  shell: "pip3 install --user --upgrade i3-resurrect"
+  tags:
+    - install
+    - desktop
+    - i3-resurect
 
 - name: Install 1password
   become_user: root
