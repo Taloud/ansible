@@ -10,8 +10,6 @@ cd ansible
 ansible-playbook -t install --ask-vault-pass local.yml --ask-become-pass
 ```
 
-Manually `:PackerSync` in neovim.
-
 For now zsh is still not by defaut can't make it work without sudo on ansible, so have to `chsh -s $(which zsh)`.
 
 For now manually launch polybar install with `cd ~/git/polybar && ./build.sh`
@@ -32,3 +30,7 @@ And probably need to restow rofi after this for now.
 Finally `prefix + I` in tmux for plugin installation.
 
 Restart computer then to ensure everything is fine.
+
+## Troubleshooting
+
+If problem with i3 check here `https://i3wm.org/docs/repositories.html`

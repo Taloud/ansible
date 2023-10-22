@@ -164,6 +164,20 @@
       repo: 'https://github.com/DaveDavenport/rofi'
       dest: "{{ lookup('env', 'HOME') }}/git/rofi"
 
+- name: install lua-server
+  tags:
+    - desktop
+    - install
+    - lua
+  block:
+  - name: clone lua-server
+    ansible.builtin.git:
+      repo: 'https://github.com/LuaLS/lua-language-server'
+      dest: "{{ lookup('env', 'HOME') }}/git/lua-language-server"
+  - name: build lua-server
+    shell: "cd {{ lookup('env', 'HOME') }}/git/lua-language-server && ./make.sh"
+    ignore_errors: yes
+
 - name: install tmux-plugins manager
   tags:
     - desktop
